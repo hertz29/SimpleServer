@@ -1,30 +1,32 @@
-const commonFunctions = require('./commonFunctions');
+
 let videoList = [];
 
 
 
-const addVideo = async (request, response) => {
+const addVideo = async (link) => {
     console.log('In Add Video Model');
-    videoList.push(commonFunctions.createVideoResource(request));
-    response.statusCode = 201;
+    videoList.push(link);
     return;
 };
 
 
-const getAllVideos = async (request, response) => {
+const getAllVideos = async () => {
     console.log('In get all Videos');
-    console.log(videoList.toString());
-    response.body = videoList;
-
-    return;
+    return videoList;
 };
 
 
-const deleteVideo = async (request, response) => {
-    console.log('In Add Video Model')
+const deleteVideo = async (link) => {
+    console.log('In Delete Video Model');
+    let newList = [];
     videoList.forEach((item) => {
+        if(item !== link){
+            newList.push(item);
+        }
     });
-    return;
+
+    videoList = newList;
+    return videoList;
 };
 
 
