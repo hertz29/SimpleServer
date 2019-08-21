@@ -1,8 +1,6 @@
 const express = require('express');
+const router = require('./router');
 const app = express();
 
-app.get('/', (req,res) => {
-    console.log('hello world');
-});
-
+app.use('/video', router);
 app.listen(5000);
