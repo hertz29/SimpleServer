@@ -7,21 +7,28 @@ app.post('/',async (req,res) => {
 
     let link = req.param('link');
     result = await model.addVideo(link)
-    res.send(result);
+    res.statusCode = 200;
+    res.send(`Video ${link} was successfully added!`);
 });
 
 
 app.get('/',async (req,res) => {
     result = await model.getAllVideos();
-    console.log(result);
+
+    res.statusCode = 200;
+
     res.send(result);
 });
+
 app.delete('/', async (req,res) => {
 
     let link = req.param('link');
-    result = await  model.deleteVideo(link)
 
-    res.send(model.deleteVideo(req,res));
+    await model.deleteVideo(link)
+
+    res.statusCode = 200;
+
+    res.send(`Video ${link} was successfully removed`);
 });
 
 
